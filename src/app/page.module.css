@@ -3,7 +3,7 @@
   flex-direction: column;
   justify-content: space-between;
   align-items: center;
-  padding: 6rem;
+  padding: 2rem;
   min-height: 100vh;
 }
 
@@ -102,6 +102,10 @@
   position: absolute;
   filter: blur(45px);
   transform: translateZ(0);
+}
+
+.picture {
+  width: 100%;
 }
 
 .logo {
@@ -205,7 +209,7 @@
 /* Tablet and Smaller Desktop */
 @media (min-width: 701px) and (max-width: 1120px) {
   .grid {
-    grid-template-columns: repeat(2, 50%);
+    grid-template-columns: repeat(3, 33.3%);
   }
 }
 

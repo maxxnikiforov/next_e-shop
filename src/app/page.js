@@ -1,95 +1,48 @@
 import Image from 'next/image'
+import Head from 'next/head'
 import styles from './page.module.css'
+import products from '../products.json';
 
 export default function Home() {
   return (
+    <div className={styles.container}>
+    <Head>
+    <title>Create Next App</title>
+    <link rel="icon" href="/favicon.ico" />
+    <link rel="icon" href="/favicon.ico" />
+    <link rel="preconnect" href="https://app.snipcart.com" />
+    <link rel="preconnect" href="https://cdn.snipcart.com" />
+    <link rel="stylesheet" href="https://cdn.snipcart.com/themes/v3.0.21/default/snipcart.css" />
+    </Head>
     <main className={styles.main}>
-      <div className={styles.description}>
-        <p>
-          Add changes Get started by editing&nbsp;
-          <code className={styles.code}>src/app/page.js</code>
-        </p>
-        <div>
-          <a
-            href="https://vercel.com?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            By{' '}
-            <Image
-              src="/vercel.svg"
-              alt="Vercel Logo"
-              className={styles.vercelLogo}
-              width={100}
-              height={24}
-              priority
-            />
-          </a>
+
+        <div className={styles.grid}>
+          {products.map(product => {
+            return (
+             <div key={product.id} className={styles.card}>
+               <img className={styles.picture} src={product.image} alt={`Preview of ${product.title}`} />
+               <h3>{ product.title }</h3>
+               <p>{ product.description }</p>
+               <p>${ product.price }</p>
+               <p>
+               <button className="snipcart-add-item"
+                  data-item-id={product.id}
+                  data-item-image={product.image}
+                  data-item-name={product.title}
+                  data-item-price={product.price}
+               >
+                 Add to Cart
+               </button>
+               </p>
+             </div>
+            );
+          })}
         </div>
-      </div>
-
-      <div className={styles.center}>
-        <Image
-          className={styles.logo}
-          src="/next.svg"
-          alt="Next.js Logo"
-          width={180}
-          height={37}
-          priority
-        />
-      </div>
-
-      <div className={styles.grid}>
-        <a
-          href="https://beta.nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-          className={styles.card}
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <h2>
-            Docs <span>-&gt;</span>
-          </h2>
-          <p>Find in-depth information about Next.js features and API.</p>
-        </a>
-
-        <a
-          href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-          className={styles.card}
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <h2>
-            Learn <span>-&gt;</span>
-          </h2>
-          <p>Learn about Next.js in an interactive course with&nbsp;quizzes!</p>
-        </a>
-
-        <a
-          href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-          className={styles.card}
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <h2>
-            Templates <span>-&gt;</span>
-          </h2>
-          <p>Explore the Next.js 13 playground.</p>
-        </a>
-
-        <a
-          href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-          className={styles.card}
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <h2>
-            Deploy <span>-&gt;</span>
-          </h2>
-          <p>
-            Instantly deploy your Next.js site to a shareable URL with Vercel.
-          </p>
-        </a>
-      </div>
+       
     </main>
+
+    <script async src="https://cdn.snipcart.com/themes/v3.0.21/default/snipcart.js" />
+      <div hidden id="snipcart" data-api-key="YzMzYmVhNDctZDVjMC00OWZmLWIyYTItZGY5ZTk2MDZiNzhiNjM4MTkzOTg1NzQ0NzE3NjUw" />
+    </div>
   )
 }
